@@ -8,10 +8,14 @@ import { UsersComponent } from './users/users.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserDataComponent } from './user-data/user-data.component';
 import { RouteGuardsService } from './services/route-guards/route-guards.service';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [{
   path: 'login',
   component: LoginComponent
+}, {
+  path: 'register',
+  component: RegisterComponent
 }, {
   path: 'users',
   component: UsersComponent,
@@ -38,7 +42,9 @@ const routes: Routes = [{
   declarations: [
     UserDetailComponent,
     UsersComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    UserDataComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

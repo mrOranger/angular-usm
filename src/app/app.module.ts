@@ -1,22 +1,27 @@
+import { RouteGuardsService } from './services/route-guards/route-guards.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { UserDataComponent } from './user-data/user-data.component';
+import { AuthService } from './services/auth/auth.service';
+import { DatabaseService } from './services/database/database.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    UserDataComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    DatabaseService,
+    RouteGuardsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

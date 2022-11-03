@@ -1,25 +1,33 @@
+import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent } from './users/users.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserDataComponent } from './user-data/user-data.component';
+import { RouteGuardsService } from './services/route-guards/route-guards.service';
 
 const routes: Routes = [{
   path: 'login',
   component: LoginComponent
 }, {
   path: 'users',
-  component: UsersComponent
+  component: UsersComponent,
+  canActivate: [RouteGuardsService]
 }, {
-  path: 'users/:id/',
-  component: UserDataComponent
+  path: 'users/:id',
+  component: UserDataComponent,
+  canActivate: [RouteGuardsService]
 }, {
   path: 'users/new',
-  component: UserDetailComponent
+  component: UserDetailComponent,
+  canActivate: [RouteGuardsService]
 }, {
   path: 'users/:id/edit',
-  component: UserDetailComponent
+  component: UserDetailComponent,
+  canActivate: [RouteGuardsService]
 }, {
   path: '',
   pathMatch: 'full',
@@ -27,7 +35,19 @@ const routes: Routes = [{
 }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  declarations: [
+    UserDetailComponent,
+    UsersComponent,
+    LoginComponent
+  ],
+  imports: [
+    RouterModule.forRoot(routes),
+    FormsModule,
+    FontAwesomeModule,
+    CommonModule
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }

@@ -18,8 +18,9 @@ export class AuthService {
   /*
     Used for query the db and authorize the user
   */
-  public login(): void {
-    
+  public login(email: string, password: string): boolean {
+    this.isLoggedIn = true;
+    return this.isLoggedIn;
   }
 
   /*

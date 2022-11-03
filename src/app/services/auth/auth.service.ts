@@ -8,7 +8,7 @@ export class AuthService {
   private isLoggedIn: boolean;
 
   constructor() { 
-    this.isLoggedIn = false;
+    this.isLoggedIn = true;
   }
 
   public isUserLoggedIn(): boolean {
@@ -27,5 +27,12 @@ export class AuthService {
   */
   public register(): void {
     
+  }
+
+  /*
+    Used for logout the user
+  */
+  public logout(): void {
+    this.isLoggedIn = false;
   }
 }

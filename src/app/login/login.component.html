@@ -30,12 +30,10 @@
             </label>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <button [disabled]="!f.valid" class="btn btn-lg btn-primary btn-block" type="submit">Accedi</button>
-            </div>
-            <div class="col-md-6">
-                <button class="btn btn-lg btn-success btn-block" type="submit" (click)="signUp()">Registrati</button>
-            </div>
+            <span>Non hai un account?<a href="#" routerLink="/register">Registrati</a></span>
+        </div>
+        <div class="row">
+            <button [disabled]="!f.valid" class="btn btn-lg btn-primary btn-block" type="submit">Accedi</button>
         </div>
     </form>
 </div>

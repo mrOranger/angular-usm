@@ -40,12 +40,10 @@
             </label>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <button [disabled]="!f.valid" class="btn btn-lg btn-primary btn-block" type="submit" (click)="signIn()">Accedi</button>
-            </div>
-            <div class="col-md-6">
-                <button class="btn btn-lg btn-success btn-block" type="submit">Registrati</button>
-            </div>
+            <span>Sei già registrato?<a href="#" routerLink="/login">Accedi</a></span>
+        </div>
+        <div class="row">
+            <button class="btn btn-lg btn-success btn-block" type="submit">Registrati</button>
         </div>
     </form>
 </div>

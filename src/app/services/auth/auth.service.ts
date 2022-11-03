@@ -5,22 +5,21 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  private isLoggedIn: boolean;
+  public static readonly TOKEN : string= 'token';
 
   constructor() { 
-    this.isLoggedIn = true;
   }
 
   public isUserLoggedIn(): boolean {
-    return this.isLoggedIn;
+    return !!localStorage.getItem(AuthService.TOKEN);
   }
 
   /*
     Used for query the db and authorize the user
   */
   public login(email: string, password: string): boolean {
-    this.isLoggedIn = true;
-    return this.isLoggedIn;
+    localStorage.setItem(AuthService.TOKEN, email);
+    return true;
   }
 
   /*
@@ -33,7 +32,8 @@ export class AuthService {
   /*
     Used for logout the user
   */
-  public logout(): void {
-    this.isLoggedIn = false;
+  public logout(): boolean {
+    localStorage.removeItem(AuthService.TOKEN);
+    return true;
   }
 }

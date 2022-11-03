@@ -25,8 +25,9 @@ export class AuthService {
   /*
     Used for register a new user and authorize it
   */
-  public register(): void {
-    
+  public register(username: string, email: string, password: string): boolean {
+    localStorage.setItem(AuthService.TOKEN, email);
+    return true;
   }
 
   /*

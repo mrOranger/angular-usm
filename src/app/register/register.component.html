@@ -1,1 +1,51 @@
-<p>register works!</p>
+<div class="text-center" id="main-div">
+    <form class="form-signin" name="login-form" #f="ngForm" (ngSubmit)="signUp(f)">
+        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
+            height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Registrazione</h1>
+
+        <input ngModel name="username" type="text" id="inputUsername" class="form-control" placeholder="Username"
+            #username="ngModel" required autofocus>
+        <div *ngIf="username.dirty && username.touched && username.invalid && username.errors">
+            <div class="alert-danger" *ngIf="username.errors['required']">
+                Devi inserire necessariamente un username!
+            </div>
+        </div>
+
+        <input ngModel name="email" type="email" id="inputEmail" class="form-control" placeholder="Email"
+            #email="ngModel" required autofocus>
+        <div *ngIf="email.dirty && email.touched && email.invalid && email.errors">
+            <div class="alert-danger" *ngIf="email.errors['required']">
+                The field email is required
+            </div>
+            <div class="alert-danger" *ngIf="email.errors['email']">
+                The value must be a valid email
+            </div>
+        </div>
+
+        <input ngModel name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+            #password="ngModel" required minlength="6">
+        <div *ngIf="password.dirty && password.touched && password.invalid && password.errors">
+            <div class="alert-danger" *ngIf="password.errors['required']">
+                The field password is required
+            </div>
+            <div class="alert-danger" *ngIf="password.errors['minlength']">
+                The field password must be {{password.errors['minlength'].requiredLength }} chars length
+            </div>
+
+        </div>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Ricordati di me
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button [disabled]="!f.valid" class="btn btn-lg btn-primary btn-block" type="submit" (click)="signIn()">Accedi</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-lg btn-success btn-block" type="submit">Registrati</button>
+            </div>
+        </div>
+    </form>
+</div>

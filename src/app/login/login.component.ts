@@ -20,6 +20,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
+    if (this.authService.isUserLoggedIn()) {
+      this.router.navigate(['users']);
+    }
+
   }
 
   public singIn(form: NgForm): void {

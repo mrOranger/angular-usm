@@ -28,7 +28,7 @@ export class AuthService {
     localStorage.setItem(AuthService.TOKEN, email);
 
     /* Once the user login, the event login is emitted */
-    const testUser: User = new User(email, '', '', new Date(), '');
+    const testUser: User = new User('', email, '', '', new Date(), '');
     this.userLogin.emit(testUser);
 
     return true;
@@ -41,7 +41,7 @@ export class AuthService {
     localStorage.setItem(AuthService.TOKEN, email);
 
     /* Once the user signIn, the event signIn is emitted */
-    const testUser: User = new User(email, '', '', new Date(), '');
+    const testUser: User = new User('', email, '', '', new Date(), '');
     this.userSignIn.emit(testUser);
 
     return true;

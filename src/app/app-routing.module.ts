@@ -1,6 +1,3 @@
-import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -39,18 +36,8 @@ const routes: Routes = [{
 }];
 
 @NgModule({
-  declarations: [
-    UserDetailComponent,
-    UsersComponent,
-    LoginComponent,
-    RegisterComponent,
-    UserDataComponent
-  ],
   imports: [
-    RouterModule.forRoot(routes),
-    FormsModule,
-    FontAwesomeModule,
-    CommonModule
+    RouterModule.forRoot(routes)
   ],
   exports: [
     RouterModule

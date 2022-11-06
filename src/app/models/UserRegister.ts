@@ -4,6 +4,7 @@ class UserRegister extends User{
     public password: string;
 
     constructor(
+        id: string,
         password: string,
         email: string,
         firstName: string,
@@ -11,7 +12,7 @@ class UserRegister extends User{
         dateOfBirth: Date,
         taxCode: string
     ) {
-        super(email, firstName, lastName, dateOfBirth, taxCode);
+        super(id, email, firstName, lastName, dateOfBirth, taxCode);
         this.password = password;
     }
 }

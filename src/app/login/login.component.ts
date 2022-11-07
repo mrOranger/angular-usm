@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import User from '../models/User';
 
 @Component({
   selector: 'app-login',
@@ -20,9 +21,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.authService.isUserLoggedIn()) {
-      this.router.navigate(['users']);
-    }
+    this.authService.userSignIn.subscribe((user: User) => {
+      this.router.navigate(['/']);
+    });
 
   }
 

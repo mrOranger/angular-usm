@@ -32,26 +32,26 @@ export class AuthService {
   /*
     Used for query the db and authorize the user
   */
-  public login(email: string, password: string): boolean {
+  public login(email: string, password: string): any {
     
     this.httpClient.post(AuthService.API_AUTH + 'login', {
       email: email,
       password: password
-    }).subscribe((payload: any) => {
+    }).subscribe((payload: JsonWebToken) => {
       
       localStorage.setItem(AuthService.TOKEN, payload.access_token);
+      localStorage.setItem('user', JSON.stringify(payload));
 
       /* Once the user login, the event login is emitted */
       const user: User = new User('', payload.email, payload.first_name, '', new Date(), '');
       this.userLogin.emit(user);
 
       return true;
+      
     }, (httpRespone: HttpErrorResponse) => {
       alert(httpRespone.message);
       return false;
     });
-
-    return true;
   }
 
   /*
@@ -77,5 +77,18 @@ export class AuthService {
     this.userLogout.emit();
 
     return true;
+  }
+
+  public getUser(): User{
+    const data = JSON.parse(localStorage.getItem('user'));
+    if (data) {
+      const user: User = new User('', data['email'], data['first_name'], '', new Date(), '');      
+      return user;
+    }
+    return new User('', data['email'], data['first_name'], '', new Date(), '');      
+  }
+
+  public getToken() {
+    return localStorage.getItem(AuthService.TOKEN);
   }
 }

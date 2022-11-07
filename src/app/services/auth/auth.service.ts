@@ -40,7 +40,6 @@ export class AuthService {
     }).subscribe((payload: any) => {
       
       localStorage.setItem(AuthService.TOKEN, payload.access_token);
-      localStorage.setItem('users', JSON.stringify(payload));
 
       /* Once the user login, the event login is emitted */
       const user: User = new User('', payload.email, payload.first_name, '', new Date(), '');

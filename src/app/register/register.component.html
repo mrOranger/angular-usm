@@ -4,11 +4,34 @@
             height="72">
         <h1 class="h3 mb-3 font-weight-normal">Registrazione</h1>
 
-        <input ngModel name="username" type="text" id="inputUsername" class="form-control" placeholder="Username"
-            #username="ngModel" required autofocus>
-        <div *ngIf="username.dirty && username.touched && username.invalid && username.errors">
-            <div class="alert-danger" *ngIf="username.errors['required']">
-                Devi inserire necessariamente un username!
+        <div class="row personal-data">
+            <div class="col-md-6">
+                <input ngModel name="firstName" type="text" id="first-name" class="form-control" placeholder="Nome"
+                    #firstName="ngModel" required autofocus>
+                <div *ngIf="firstName.dirty && firstName.touched && firstName.invalid && firstName.errors">
+                    <div class="alert-danger" *ngIf="firstName.errors['required']">
+                        Devi inserire necessariamente un nome!
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <input ngModel name="lastName" type="text" id="last-name" class="form-control" placeholder="Cognome"
+                    #lastName="ngModel" required autofocus>
+                <div *ngIf="lastName.dirty && lastName.touched && lastName.invalid && lastName.errors">
+                    <div class="alert-danger" *ngIf="lastName.errors['required']">
+                        Devi inserire necessariamente un cognome!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row date-of-birth">
+            <input ngModel name="dateOfBirth" type="date" id="date-of-birth" class="form-control"
+                placeholder="Data di nascita" #dateOfBirth="ngModel" required autofocus>
+            <div *ngIf="dateOfBirth.dirty && dateOfBirth.touched && dateOfBirth.invalid && dateOfBirth.errors">
+                <div class="alert-danger" *ngIf="dateOfBirth.errors['required']">
+                    Devi inserire necessariamente una data di nascita!
+                </div>
             </div>
         </div>
 
@@ -16,10 +39,10 @@
             #email="ngModel" required autofocus>
         <div *ngIf="email.dirty && email.touched && email.invalid && email.errors">
             <div class="alert-danger" *ngIf="email.errors['required']">
-                The field email is required
+                Devi inserire necessarimante una email valida
             </div>
             <div class="alert-danger" *ngIf="email.errors['email']">
-                The value must be a valid email
+                Devi inserire necessarimante una email valida
             </div>
         </div>
 
@@ -27,10 +50,10 @@
             #password="ngModel" required minlength="6">
         <div *ngIf="password.dirty && password.touched && password.invalid && password.errors">
             <div class="alert-danger" *ngIf="password.errors['required']">
-                The field password is required
+                Devi inserire una password
             </div>
             <div class="alert-danger" *ngIf="password.errors['minlength']">
-                The field password must be {{password.errors['minlength'].requiredLength }} chars length
+                La password deve essere lunga almeno {{password.errors['minlength'].requiredLength }} caratteri
             </div>
 
         </div>
@@ -43,7 +66,9 @@
             <span>Sei già registrato?<a href="#" routerLink="/login">Accedi</a></span>
         </div>
         <div class="row">
-            <button class="btn btn-lg btn-success btn-block" type="submit">Registrati</button>
+            <div class="col text-center">
+                <button class="btn btn-lg btn-success btn-block" type="submit">Registrati</button>
+            </div>
         </div>
     </form>
 </div>

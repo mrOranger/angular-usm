@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://localhost:8000/users/'
+  API_URL: 'http://localhost:8000/users/',
+  API_URL_AUTH_LOGIN: 'http://localhost:8000/api/auth/login',
+  API_URL_AUTH_SIGNUP: 'http://localhost:8000/api/auth/signup',
+  API_URL_AUTH_LOGOUT: 'http://localhost:8000/api/auth/logout'
 };
 
 /*

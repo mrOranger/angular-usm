@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
   private readData(form: NgForm): void {
     this.user.setFirstName(form.value.firstName);
     this.user.setLastName(form.value.lastName);
-    this.user.setDateOfBirth(new Date(form.value.dateOfBirth));
+    this.user.setDateOfBirth(form.value.dateOfBirth);
     this.user.setEmail(form.value.email);
     this.user.setPassword(form.value.password);
     this.user.setTaxCode(this.generateTaxCode());
@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
   private generateTaxCode(): string {
     return this.user.getFirstName().substring(0, 3).toUpperCase()
       .concat(this.user.getLastName().substring(0, 3).toUpperCase())
-      .concat(this.user.getDateOfBirth().getFullYear().toString());
+      .concat(this.user.getDateOfBirth().split('-')[0].toString());
   }
 
 }

@@ -54,7 +54,8 @@ export class AuthService {
     });
   }
 
-  public register(user : User) : Observable<Object> {
+  public register(user: User): Observable<Object> {
+    console.log(user.toObject());
     return this.httpClient.post(environment.API_URL_AUTH_SIGNUP, user.toObject())
       .pipe(this.manageResponseSignUp(user));
   }

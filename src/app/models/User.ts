@@ -3,7 +3,7 @@ class User {
     private email: string;
     private firstName: string;
     private lastName: string;
-    private dateOfBirth: Date;
+    private dateOfBirth: string;
     private taxCode: string;
     private password: string;
 
@@ -13,7 +13,7 @@ class User {
         this.email = "";
         this.firstName = "";
         this.lastName = "";
-        this.dateOfBirth = new Date();
+        this.dateOfBirth = "";
         this.taxCode = "";
         this.password = "";
     }
@@ -34,7 +34,7 @@ class User {
         return this.lastName;
     }
 
-    public getDateOfBirth(): Date {
+    public getDateOfBirth(): string {
         return this.dateOfBirth;
     }
 
@@ -62,7 +62,7 @@ class User {
         this.lastName = lastName;
     }
 
-    public setDateOfBirth(dateOfBirth: Date): void {
+    public setDateOfBirth(dateOfBirth: string): void {
         this.dateOfBirth = dateOfBirth;
     } 
 

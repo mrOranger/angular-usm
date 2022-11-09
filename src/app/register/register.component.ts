@@ -1,7 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import User from '../models/User';
 
 @Component({
   selector: 'app-register',
@@ -12,34 +14,35 @@ export class RegisterComponent implements OnInit {
 
   private authService: AuthService;
   private router: Router;
-
-  private firstName: string;
-  private lastName: string;
-  private dateOfBirth: Date;
-  private email: string;
-  private password: string;
+  private user: User;
 
   constructor(authService : AuthService, router : Router) { 
     this.authService = authService;
     this.router = router;
+    this.user = new User();
   }
 
   public ngOnInit(): void {
-
   }
 
-  public signUp(form: NgForm): void {
+  public async signUp(form: NgForm): Promise<void> {
     this.readData(form);
-    console.log('First name: ' + this.firstName);
-    console.log('Last name: ' + this.lastName);
-    console.log('Date of birth: ' + this.dateOfBirth);
-    console.log('Email: ' + this.email);
-    console.log('Password: ' + this.password);
-    console.log('TaxCode: ' + this.generateTaxCode());
-
-    /*if (this.authService.register(username, email, password)) {
-      this.router.navigate(['users']);
-    }*/
+    try {
+      const response = await this.authService.register(this.user).toPromise();
+      console.log(response);
+    } catch (error) {
+      switch (error.status) {
+        case 401:
+          alert("Non autorizzato!");
+          break;
+        case 404:
+          alert("404 not found!");
+          break;
+        case 500:
+          alert("Errore interno al server!");
+          break;
+      }
+    }
   }
 
   public signIn(): void {
@@ -47,17 +50,18 @@ export class RegisterComponent implements OnInit {
   }
 
   private readData(form: NgForm): void {
-    this.firstName = form.value.firstName;
-    this.lastName = form.value.lastName;
-    this.dateOfBirth = new Date(form.value.dateOfBirth);
-    this.email = form.value.email;
-    this.password = form.value.password;
+    this.user.setFirstName(form.value.firstName);
+    this.user.setLastName(form.value.lastName);
+    this.user.setDateOfBirth(new Date(form.value.dateOfBirth));
+    this.user.setEmail(form.value.email);
+    this.user.setPassword(form.value.password);
+    this.user.setTaxCode(this.generateTaxCode());
   }
 
   private generateTaxCode(): string {
-    return this.firstName.substring(0, 3).toUpperCase()
-      .concat(this.lastName.substring(0, 3).toUpperCase())
-      .concat(this.dateOfBirth.getFullYear().toString());
+    return this.user.getFirstName().substring(0, 3).toUpperCase()
+      .concat(this.user.getLastName().substring(0, 3).toUpperCase())
+      .concat(this.user.getDateOfBirth().getFullYear().toString());
   }
 
 }

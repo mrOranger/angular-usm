@@ -31,9 +31,6 @@ export class AuthService {
     return !!localStorage.getItem(AuthService.TOKEN);
   }
 
-  /*
-    Used for query the db and authorize the user
-  */
   public login(email: string, password: string): Observable<Object> {
     
     return this.httpClient.post(environment.API_URL_AUTH_LOGIN, {
@@ -57,9 +54,6 @@ export class AuthService {
     });
   }
 
-  /*
-    Used for register a new user and authorize it
-  */
   public register(user : User) : Observable<Object> {
     return this.httpClient.post(environment.API_URL_AUTH_SIGNUP, user.toObject())
       .pipe(this.manageResponseSignUp(user));
@@ -76,16 +70,10 @@ export class AuthService {
     });    
   }
 
-
-  /*
-    Used for logout the user
-  */
   public logout(): boolean {
     localStorage.removeItem(AuthService.TOKEN);
-
-    /* Once the user logout, the event logout is emitted */
+    localStorage.removeItem(AuthService.USER_TOKEN);
     this.userLogout.emit();
-
     return true;
   }
 

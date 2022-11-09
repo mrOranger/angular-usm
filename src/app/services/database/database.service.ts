@@ -2,8 +2,8 @@ import { Observable } from 'rxjs';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import UserRegister from './../../models/UserRegister';
 import { AuthService } from '../auth/auth.service';
+import User from 'src/app/models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -31,26 +31,26 @@ class DatabaseService {
     });
   }
 
-  public getUser(user: UserRegister): Observable<UserRegister>{
-    return this.httpClient.get<UserRegister>(DatabaseService.API_URL + '/' + user.id, {
+  public getUser(user: User): Observable<User>{
+    return this.httpClient.get<User>(DatabaseService.API_URL + '/' + user.getId(), {
       headers: this.getAuthHeader()
     });
   }
 
-  public deleteUser(user: UserRegister): Observable<UserRegister> {
-    return this.httpClient.delete<UserRegister>(DatabaseService.API_URL + '/' + user.id, {
+  public deleteUser(user: User): Observable<User> {
+    return this.httpClient.delete<User>(DatabaseService.API_URL + '/' + user.getId(), {
       headers: this.getAuthHeader()
     });
   }
 
-  public updateUser(user: UserRegister): Observable<UserRegister>{
-    return this.httpClient.patch<UserRegister>(DatabaseService.API_URL + '/' + user.id, user, {
+  public updateUser(user: User): Observable<User>{
+    return this.httpClient.patch<User>(DatabaseService.API_URL + '/' + user.getId, user, {
       headers: this.getAuthHeader()
     });
   }
 
-  public createUser(user: UserRegister): Observable<UserRegister>{
-    return this.httpClient.post<UserRegister>(DatabaseService.API_URL, user, {
+  public createUser(user: User): Observable<User>{
+    return this.httpClient.post<User>(DatabaseService.API_URL, user, {
       headers: this.getAuthHeader()
     });
   }

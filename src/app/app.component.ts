@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import DatabaseService from './services/database/database.service';
-import UserRegister from './models/UserRegister';
 
 @Component({
   selector: 'app-root',

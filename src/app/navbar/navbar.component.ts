@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
 
     if (this.isUsedLoggedIn) {
       const user: User = this.authService.getUser();
-      this.username = user.firstName;
+      this.username = user.getFirstName();
     }
 
     this.subscribeLogin();
@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
 
   private subscribeLogin() : void{
     this.authService.userLogin.subscribe((user: User) => {
-      this.username = user.firstName;
+      this.username = user.getFirstName();
       this.isUsedLoggedIn = true;
     });
   }
@@ -55,7 +55,7 @@ export class NavbarComponent implements OnInit {
 
   private subscribeSignIn(): void {
     this.authService.userSignIn.subscribe((user: User) => {
-      this.username = user.firstName;
+      this.username = user.getFirstName();
       this.isUsedLoggedIn = true;
     });
   }

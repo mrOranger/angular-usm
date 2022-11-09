@@ -1,3 +1,5 @@
+import { MonoTypeOperatorFunction, Observable, tap } from 'rxjs';
+import { environment } from './../../../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { JsonWebToken } from 'src/app/models/interfaces/JsonWebToken';
@@ -8,8 +10,8 @@ import User from 'src/app/models/User';
 })
 export class AuthService {
 
-  public static readonly API_AUTH: string = 'http://localhost:8000/api/auth/';
   public static readonly TOKEN: string = 'token';
+  public static readonly USER_TOKEN: string = 'user';
 
   @Output('login') public userLogin: EventEmitter<User>;
   @Output('register') public userSignIn: EventEmitter<User>;
@@ -32,39 +34,31 @@ export class AuthService {
   /*
     Used for query the db and authorize the user
   */
-  public login(email: string, password: string): any {
+  public login(email: string, password: string): Observable<Object> {
     
-    this.httpClient.post(AuthService.API_AUTH + 'login', {
+    return this.httpClient.post(environment.API_URL_AUTH_LOGIN, {
       email: email,
       password: password
-    }).subscribe((payload: JsonWebToken) => {
-      
+    }).pipe(this.manageResponse());
+
+  }
+
+  private manageResponse(): MonoTypeOperatorFunction<JsonWebToken> {
+    return tap((payload: JsonWebToken) => {
       localStorage.setItem(AuthService.TOKEN, payload.access_token);
-      localStorage.setItem('user', JSON.stringify(payload));
-
-      /* Once the user login, the event login is emitted */
-      const user: User = new User('', payload.email, payload.first_name, '', new Date(), '');
-      this.userLogin.emit(user);
-
+      localStorage.setItem(AuthService.USER_TOKEN, JSON.stringify(payload));
+      const user: User = new User();
+      user.setEmail(payload.email);
+      user.setFirstName(payload.first_name);
+      this.userSignIn.emit(user);
       return true;
-      
-    }, (httpRespone: HttpErrorResponse) => {
-      alert(httpRespone.message);
-      return false;
     });
   }
 
   /*
     Used for register a new user and authorize it
   */
-  public register(username: string, email: string, password: string): boolean {
-    localStorage.setItem(AuthService.TOKEN, email);
-
-    /* Once the user signIn, the event signIn is emitted */
-    const testUser: User = new User('', email, '', '', new Date(), '');
-    this.userSignIn.emit(testUser);
-
-    return true;
+  public register(firstName: string) {
   }
 
   /*
@@ -82,10 +76,10 @@ export class AuthService {
   public getUser(): User{
     const data = JSON.parse(localStorage.getItem('user'));
     if (data) {
-      const user: User = new User('', data['email'], data['first_name'], '', new Date(), '');      
+      const user: User = new User();      
       return user;
     }
-    return new User('', data['email'], data['first_name'], '', new Date(), '');      
+    return new User();      
   }
 
   public getToken() {

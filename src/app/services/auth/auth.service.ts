@@ -39,11 +39,11 @@ export class AuthService {
     return this.httpClient.post(environment.API_URL_AUTH_LOGIN, {
       email: email,
       password: password
-    }).pipe(this.manageResponse());
+    }).pipe(this.manageResponseLogin());
 
   }
 
-  private manageResponse(): MonoTypeOperatorFunction<JsonWebToken> {
+  private manageResponseLogin(): MonoTypeOperatorFunction<JsonWebToken> {
     return tap((payload: JsonWebToken) => {
       localStorage.setItem(AuthService.TOKEN, payload.access_token);
       localStorage.setItem(AuthService.USER_TOKEN, JSON.stringify(payload));
@@ -52,14 +52,30 @@ export class AuthService {
       user.setFirstName(payload.first_name);
       this.userSignIn.emit(user);
       return true;
+    }, (error: HttpErrorResponse) => {
+      alert(error.message);
     });
   }
 
   /*
     Used for register a new user and authorize it
   */
-  public register(firstName: string) {
+  public register(user : User) : Observable<Object> {
+    return this.httpClient.post(environment.API_URL_AUTH_SIGNUP, user.toObject())
+      .pipe(this.manageResponseSignUp(user));
   }
+
+  private manageResponseSignUp(user : User): MonoTypeOperatorFunction<JsonWebToken> {
+    return tap((payload: JsonWebToken) => {
+      localStorage.setItem(AuthService.TOKEN, payload.access_token);
+      localStorage.setItem(AuthService.USER_TOKEN, JSON.stringify(payload));
+      this.userSignIn.emit(user);
+      return true;
+    }, (error: HttpErrorResponse) => {
+      alert(error.message);
+    });    
+  }
+
 
   /*
     Used for logout the user

@@ -82,12 +82,11 @@ class User {
 
     public toObject(): Object {
         return {
-            "id": this.getId(),
-            "firstName": this.getFirstName(),
-            "lastName": this.getLastName(),
-            "dateOfBirth": this.getDateOfBirth(),
+            "first-name": this.getFirstName(),
+            "last-name": this.getLastName(),
+            "date-of-birth": this.getDateOfBirth(),
             "email": this.getEmail(),
-            "taxCode": this.getTaxCode(),
+            "tax-code": this.getTaxCode(),
             "password": this.getPassword()
         }
     }

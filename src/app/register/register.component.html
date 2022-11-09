@@ -27,7 +27,7 @@
 
         <div class="row date-of-birth">
             <input ngModel name="dateOfBirth" type="date" id="date-of-birth" class="form-control"
-                placeholder="Data di nascita" #dateOfBirth="ngModel" required autofocus>
+                data-date-format="YYYY/MM/DD" #dateOfBirth="ngModel" required autofocus>
             <div *ngIf="dateOfBirth.dirty && dateOfBirth.touched && dateOfBirth.invalid && dateOfBirth.errors">
                 <div class="alert-danger" *ngIf="dateOfBirth.errors['required']">
                     Devi inserire necessariamente una data di nascita!

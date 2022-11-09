@@ -64,7 +64,6 @@ export class AuthService {
       localStorage.setItem(AuthService.TOKEN, payload.access_token);
       localStorage.setItem(AuthService.USER_TOKEN, JSON.stringify(payload));
       this.userSignIn.emit(user);
-      return true;
     }, (error: HttpErrorResponse) => {
       alert(error.message);
     });    

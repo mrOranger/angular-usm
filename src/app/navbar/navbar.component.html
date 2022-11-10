@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="#">Top navbar</a>
+    <a class="navbar-brand nav-link" href="#" routerLink="users/">Top navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -7,12 +7,12 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Aggiungi utente</a>
+                <a class="nav-link" href="#" routerLink="users/new">Aggiungi utente</a>
             </li>
         </ul>
         <ul class="navbar-nav" *ngIf="isUserLoggedIn()">
             <li class="nav-item">
-                <span class="nav-link">Username</span>
+                <span class="nav-link">{{getUsername()}}</span>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link" (click)="logout($event)">Sign out</a>

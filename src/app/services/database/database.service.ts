@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import User from 'src/app/models/User';
+import UserInterface from 'src/app/models/interfaces/UserInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,8 @@ class DatabaseService {
     });
   }
 
-  public getUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>(DatabaseService.API_URL, {
+  public getUsers(): Observable<UserInterface> {
+    return this.httpClient.get<UserInterface>(DatabaseService.API_URL, {
       headers: this.getAuthHeader()
     });
   }

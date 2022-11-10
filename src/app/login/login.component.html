@@ -7,22 +7,25 @@
             #email="ngModel" required autofocus>
         <div *ngIf="email.dirty && email.touched && email.invalid && email.errors">
             <div class="alert-danger" *ngIf="email.errors['required']">
-                The field email is required
+                Devi inserire un'email.
             </div>
             <div class="alert-danger" *ngIf="email.errors['email']">
-                The value must be a valid email
+                Devi inserire un'email valida.
             </div>
         </div>
         <input ngModel name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
             #password="ngModel" required minlength="6">
         <div *ngIf="password.dirty && password.touched && password.invalid && password.errors">
             <div class="alert-danger" *ngIf="password.errors['required']">
-                The field password is required
+                Devi inserire una password
             </div>
             <div class="alert-danger" *ngIf="password.errors['minlength']">
-                The field password must be {{password.errors['minlength'].requiredLength }} chars length
+                La password deve essere lunga almeno {{password.errors['minlength'].requiredLength }} caratteri.
             </div>
 
+        </div>
+        <div class="alert-danger" *ngIf="credentialError">
+            Email o password errate!
         </div>
         <div class="checkbox mb-3">
             <label>

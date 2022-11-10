@@ -1,3 +1,4 @@
+import { MatDialog, MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
@@ -13,6 +14,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './services/auth/auth.service';
 import DatabaseService from './services/database/database.service'
 import { HttpClientModule } from '@angular/common/http';
+import DialogueComponent from './dialogue/dialogue.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,18 +25,22 @@ import { HttpClientModule } from '@angular/common/http';
     UserDataComponent,
     UserDetailComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    DialogueComponent
   ],
   imports: [
     FormsModule, 
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
     DatabaseService,
-    RouteGuardsService
+    RouteGuardsService,
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,10 +14,12 @@ export class LoginComponent implements OnInit {
 
   private authService: AuthService;
   private router: Router;
+  public credentialError: boolean;
 
   constructor(authService: AuthService, router: Router) {
     this.authService = authService;
     this.router = router;
+    this.credentialError = false;
   }
 
   ngOnInit(): void {
@@ -30,11 +33,14 @@ export class LoginComponent implements OnInit {
   public singIn(form: NgForm): void {
     const email: string = form.value.email;
     const password: string = form.value.password;
-    if (this.authService.login(email, password)) {
-      this.router.navigate(['users']);
-    } else {
-      console.log('Non a valid user!');
-    }
+    this.authService.login(email, password).toPromise()
+      .then(() => this.router.navigate(['users']))
+      .catch((error: HttpErrorResponse) => {
+        this.credentialError = true;
+        setTimeout(() => {
+          this.credentialError = false;
+        }, 5000);
+      });
   }
 
   public signUp(): void {

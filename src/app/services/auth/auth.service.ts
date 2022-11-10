@@ -49,13 +49,10 @@ export class AuthService {
       user.setFirstName(payload.first_name);
       this.userSignIn.emit(user);
       return true;
-    }, (error: HttpErrorResponse) => {
-      alert(error.message);
     });
   }
 
-  public register(user: User): Observable<Object> {
-    console.log(user.toObject());
+  public register(user: User): Observable<JsonWebToken> {
     return this.httpClient.post(environment.API_URL_AUTH_SIGNUP, user.toObject())
       .pipe(this.manageResponseSignUp(user));
   }
@@ -65,8 +62,6 @@ export class AuthService {
       localStorage.setItem(AuthService.TOKEN, payload.access_token);
       localStorage.setItem(AuthService.USER_TOKEN, JSON.stringify(payload));
       this.userSignIn.emit(user);
-    }, (error: HttpErrorResponse) => {
-      alert(error.message);
     });    
   }
 

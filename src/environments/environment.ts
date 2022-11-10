@@ -7,7 +7,24 @@ export const environment = {
   API_URL: 'http://localhost:8000/users/',
   API_URL_AUTH_LOGIN: 'http://localhost:8000/api/auth/login',
   API_URL_AUTH_SIGNUP: 'http://localhost:8000/api/auth/signup',
-  API_URL_AUTH_LOGOUT: 'http://localhost:8000/api/auth/logout'
+  API_URL_AUTH_LOGOUT: 'http://localhost:8000/api/auth/logout',
+  errorMessages: {
+    unauthorized: {
+      code: 401,
+      title: "Non autorizzato!",
+      body: "Non sei autorizzato ad accedere a questa risorsa."
+    },
+    notFound: {
+      code: 404,
+      title: "404 - Not Found",
+      body: "Non abbiamo trovato questa risorsa nel server."
+    },
+    serverError: {
+      code: 500,
+      title: "Errore interno al Server",
+      body: "Si è verificato un errore interno al Server, perfavore contatta l'assistenza."
+    }
+  }
 };
 
 /*

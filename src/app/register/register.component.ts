@@ -4,6 +4,9 @@ import { AuthService } from './../services/auth/auth.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import User from '../models/User';
+import { catchError, map, throwError } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import DialogueComponent from '../dialogue/dialogue.component';
 
 @Component({
   selector: 'app-register',
@@ -15,34 +18,35 @@ export class RegisterComponent implements OnInit {
   private authService: AuthService;
   private router: Router;
   private user: User;
+  public errorCode: number;
+  public dialog: MatDialog;
 
-  constructor(authService : AuthService, router : Router) { 
+  constructor(authService : AuthService, router : Router, dialog: MatDialog) { 
     this.authService = authService;
     this.router = router;
     this.user = new User();
+    this.dialog = dialog;
   }
 
   public ngOnInit(): void {
   }
 
+  public openDialog(enterAnimationDuration: string, exitAnimationDuration: string, errorCode: number): void {
+    this.dialog.open(DialogueComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {
+        error: errorCode
+      }
+    });    
+  }
+
   public async signUp(form: NgForm): Promise<void> {
     this.readData(form);
-    try {
-      const response = await this.authService.register(this.user).toPromise();
-      console.log(response);
-    } catch (error) {
-      switch (error.status) {
-        case 401:
-          alert("Non autorizzato!");
-          break;
-        case 404:
-          alert("404 not found!");
-          break;
-        case 500:
-          alert("Errore interno al server!");
-          break;
-      }
-    }
+    const result = await this.authService.register(this.user).toPromise()
+      .then(() => this.router.navigate(['/']))
+      .catch((error: HttpErrorResponse) => this.openDialog('3000ms', '1500ms', error.status));
   }
 
   public signIn(): void {
@@ -63,5 +67,4 @@ export class RegisterComponent implements OnInit {
       .concat(this.user.getLastName().substring(0, 3).toUpperCase())
       .concat(this.user.getDateOfBirth().split('-')[0].toString());
   }
-
 }

@@ -9,18 +9,10 @@ import DatabaseService from './services/database/database.service';
 })
 class AppComponent implements OnInit{
 
-  private databaseService: DatabaseService;
-  private users : Observable<Object>;
-
-  constructor(databaseService: DatabaseService) {
-    this.databaseService = databaseService;
-    this.users = this.databaseService.getUsers();
+  constructor() {
   }
 
   public ngOnInit(): void {
-    this.users.subscribe((user) => {
-      console.log(user);
-    });
   }
 }
 

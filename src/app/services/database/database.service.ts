@@ -25,8 +25,8 @@ class DatabaseService {
     });
   }
 
-  public getUsers() {
-    return this.httpClient.get(DatabaseService.API_URL, {
+  public getUsers(): Observable<User[]> {
+    return this.httpClient.get<User[]>(DatabaseService.API_URL, {
       headers: this.getAuthHeader()
     });
   }

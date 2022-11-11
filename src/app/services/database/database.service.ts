@@ -44,8 +44,8 @@ class DatabaseService {
     });
   }
 
-  public updateUser(user: UserInterface): Observable<UserInterface>{
-    return this.httpClient.patch<UserInterface>(DatabaseService.API_URL + '/' + user.id, user, {
+  public updateUser(user: Object): Observable<Object>{
+    return this.httpClient.patch<Object>(DatabaseService.API_URL + '/' + user['id'], user, {
       headers: this.getAuthHeader()
     });
   }

@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Modifica {{data.firstName}} {{data.lastName}}</h1>
+<h1 mat-dialog-title>Modifica {{getFirstNameCopy()}} {{getLastNameCopy()}}</h1>
 <div mat-dialog-content>
     <div class="conatiner-flui">
         <div class="row">
@@ -44,7 +44,7 @@
         </div>
         <div class="col-md-6" >
             <div mat-dialog-actions align="center">
-                <button class="btn btn-success" mat-button cdkFocusInitial>Conferma</button>
+                <button class="btn btn-success" mat-button [mat-dialog-close]="data" cdkFocusInitial>Conferma</button>
             </div>
         </div>
     </div>

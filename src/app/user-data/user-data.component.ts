@@ -17,12 +17,14 @@ export class UserDataComponent implements OnInit {
   private faTrash: IconDefinition;
 
   @Output("onDeleteUser") private deleteEvent: EventEmitter<UserInterface>;
+  @Output("onUpdateUser") private updateEvent: EventEmitter<UserInterface>;
 
   constructor(private dialog: MatDialog) {
     this.faPencil = faPencil;
     this.faTrash = faTrash;
 
     this.deleteEvent = new EventEmitter<UserInterface>();
+    this.updateEvent = new EventEmitter<UserInterface>();
   }
 
   ngOnInit(): void {
@@ -41,7 +43,6 @@ export class UserDataComponent implements OnInit {
   }
 
   public deleteUser(): void {
-    console.log('Delete user ' + this.user.id);
     this.deleteEvent.emit(this.user);
   }
 
@@ -63,7 +64,7 @@ export class UserDataComponent implements OnInit {
   private afterDialogClose(dialogRef: MatDialogRef<any>): void {
     dialogRef.afterClosed().subscribe(
       (result) => {
-        console.log("Il Dialog è stato chiuso");
+        this.updateEvent.emit(result);
       }
     );
   } 

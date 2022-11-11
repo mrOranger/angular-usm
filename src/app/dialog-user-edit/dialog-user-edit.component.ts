@@ -9,15 +9,27 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DialogUserEditComponent implements OnInit {
 
-  constructor(
-    public dialogRef: MatDialogRef<DialogUserEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: UserInterface) { }
+  private firstNameCopy: string;
+  private lastNameCopy: string;
+
+  constructor(public dialogRef: MatDialogRef<DialogUserEditComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: UserInterface) { 
+    this.firstNameCopy = data.firstName.slice();
+    this.lastNameCopy = data.lastName.slice();
+    }
 
   ngOnInit(): void {
-    console.log(this.data);
   }
 
   public closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  public getFirstNameCopy(): string {
+    return this.firstNameCopy;
+  }
+
+  public getLastNameCopy(): string {
+    return this.lastNameCopy;
   }
 }

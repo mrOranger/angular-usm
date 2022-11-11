@@ -16,3 +16,8 @@ th {
     text-align: center;
     font-size: 15px;
 }
+
+tr:hover {
+    transition: 500ms;
+    background-color: gainsboro;
+}

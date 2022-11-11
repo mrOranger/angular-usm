@@ -1,7 +1,7 @@
 <div class="container-fluid">
    <h1>Utenti presenti nel Database</h1>
    <h2>Qui puoi visualizzare tutti gli utenti presenti nel database, modificarli ed eliminarli</h2> 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">Id</th>
@@ -15,6 +15,7 @@
             </tr>
         </thead>
         <tbody>
+            <tr app-user-data *ngFor="let user of getUsers()" [user] = "user"></tr>
         </tbody>
     </table>
 </div>

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import User from 'src/app/models/User';
-import UserInterface from 'src/app/models/interfaces/UserInterface';
+import { UserInterface } from 'src/app/models/interfaces/UserInterface';
 
 @Injectable({
   providedIn: 'root'

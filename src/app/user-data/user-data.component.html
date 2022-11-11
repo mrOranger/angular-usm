@@ -1,1 +1,16 @@
-<p>user-data works!</p>
+<th scope="row">{{user.id}}</th>
+<td>{{user['first-name']}}</td>
+<td>{{user['last-name']}}</td>
+<td>{{user['date-of-birth'] | date}}</td>
+<td>{{user['tax-code']}}</td>
+<td>{{user.email}}</td>
+<td>
+    <button class="btn btn-primary">
+        <fa-icon [icon] = "getInfoIcon()"></fa-icon>
+    </button>
+</td>
+<td>
+    <button class="btn btn-danger">
+        <fa-icon [icon] = "getTrashIcon()"></fa-icon>
+    </button>
+</td>

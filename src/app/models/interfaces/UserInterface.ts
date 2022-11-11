@@ -7,4 +7,4 @@ interface UserInterface {
     taxCode: string;
 }
 
-export default UserInterface;
+export { UserInterface };

@@ -2,19 +2,21 @@ td, th{
     text-align: center;
     font-size: 15px;
     vertical-align: middle;
+    transition: 500ms;
+}
+
+button {
+    transition: 500ms;
 }
 
 td:hover {
-    transition: 500ms;
     font-size: 20px;
 }
 
 th:hover {
-    transition: 500ms;
     font-size: 20px;
 }
 
 button:hover {
-    transition: 500ms;
     font-size: 20px;
 }

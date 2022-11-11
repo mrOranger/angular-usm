@@ -2,3 +2,23 @@
 body {
     min-height: 75rem;
 }
+
+.navbar-brand {
+    padding: 10px;
+    font-size: 20px;
+    transition: 500ms;
+}
+
+li > .nav-link {
+    padding: 10px;
+    font-size: 15px;
+    transition: 500ms;
+}
+
+li > .nav-link:hover {
+    font-size: 20px;
+}
+
+.navbar-brand:hover {
+    font-size: 30px;
+}

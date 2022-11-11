@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import DialogueComponent from './dialogue/dialogue.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DialogUserEditComponent } from './dialog-user-edit/dialog-user-edit.component';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     UserDetailComponent,
     RegisterComponent,
     LoginComponent,
-    DialogueComponent
+    DialogueComponent,
+    DialogUserEditComponent
   ],
   imports: [
     FormsModule, 
@@ -36,13 +40,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     AuthService,
     DatabaseService,
     RouteGuardsService,
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }
   ],
   bootstrap: [AppComponent]
 })

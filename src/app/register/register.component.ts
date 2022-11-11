@@ -4,7 +4,6 @@ import { AuthService } from './../services/auth/auth.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import User from '../models/User';
-import { catchError, map, throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import DialogueComponent from '../dialogue/dialogue.component';
 

@@ -1,0 +1,35 @@
+h1 {
+    text-align: center;
+}
+
+input {
+    text-align: left;
+    font-size: 15px;
+    transition: 500ms;
+}
+
+mat-label {
+    text-align: left;
+    font-size: 15px;
+    padding: 5px;
+}
+
+input:focus {
+    font-size: 20px;
+}
+
+input:hover {
+    font-size: 20px;
+}
+
+.btn {
+    transition: 500ms;
+}
+
+.btn:hover {
+    font-size: 20px;
+}
+
+.btn:active {
+    font-size: 20px;
+}

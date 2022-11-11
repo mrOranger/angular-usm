@@ -6,11 +6,11 @@
 <td>{{user.email}}</td>
 <td>
     <button class="btn btn-primary">
-        <fa-icon [icon] = "getInfoIcon()"></fa-icon>
+        <fa-icon [icon] = "getInfoIcon()" (click)="updateUser()"></fa-icon>
     </button>
 </td>
 <td>
     <button class="btn btn-danger">
-        <fa-icon [icon] = "getTrashIcon()"></fa-icon>
+        <fa-icon [icon] = "getTrashIcon()" (click)="deleteUser()"></fa-icon>
     </button>
 </td>

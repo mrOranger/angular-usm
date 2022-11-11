@@ -32,26 +32,26 @@ class DatabaseService {
     });
   }
 
-  public getUser(user: User): Observable<User>{
-    return this.httpClient.get<User>(DatabaseService.API_URL + '/' + user.getId(), {
+  public getUser(user: UserInterface): Observable<UserInterface>{
+    return this.httpClient.get<UserInterface>(DatabaseService.API_URL + '/' + user.id, {
       headers: this.getAuthHeader()
     });
   }
 
-  public deleteUser(user: User): Observable<User> {
-    return this.httpClient.delete<User>(DatabaseService.API_URL + '/' + user.getId(), {
+  public deleteUser(user: UserInterface): Observable<UserInterface> {
+    return this.httpClient.delete<UserInterface>(DatabaseService.API_URL + '/' + user.id, {
       headers: this.getAuthHeader()
     });
   }
 
-  public updateUser(user: User): Observable<User>{
-    return this.httpClient.patch<User>(DatabaseService.API_URL + '/' + user.getId, user, {
+  public updateUser(user: UserInterface): Observable<UserInterface>{
+    return this.httpClient.patch<UserInterface>(DatabaseService.API_URL + '/' + user.id, user, {
       headers: this.getAuthHeader()
     });
   }
 
-  public createUser(user: User): Observable<User>{
-    return this.httpClient.post<User>(DatabaseService.API_URL, user, {
+  public createUser(user: UserInterface): Observable<UserInterface>{
+    return this.httpClient.post<UserInterface>(DatabaseService.API_URL, user, {
       headers: this.getAuthHeader()
     });
   }

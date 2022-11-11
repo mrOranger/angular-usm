@@ -32,6 +32,31 @@ class UsersComponent implements OnInit {
   public getUsers(): Array<UserInterface> {
     return this.users;
   }
+
+  public onDeleteUser(user: UserInterface): void {
+    const deleteUserConfirm = this.deleteConfirmMessage(user);
+    if (deleteUserConfirm) {
+      this.databaseService.deleteUser(user).subscribe(
+        (response) => {
+          try {
+            const userIndex: number = this.users.indexOf(user);
+            this.users.splice(userIndex, 1);
+          } catch (error) {
+            console.log(error);
+            alert("Errore interno al server, contattare l'assistenza.");
+          }
+        }
+      );
+    }
+  }
+
+  private deleteConfirmMessage(user: UserInterface): boolean {
+    return confirm("Vuoi eliminare l'utente ".
+      concat(user['first-name']).
+      concat(" ").
+      concat(user['last-name']).
+      concat("?"));
+  }
 }
 
 export { UsersComponent };

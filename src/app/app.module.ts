@@ -1,7 +1,6 @@
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserDataComponent } from './user-data/user-data.component';
 import { UsersComponent } from './users/users.component';
 import { FormsModule } from '@angular/forms';
@@ -28,7 +27,6 @@ import { DialogUserNewComponent } from './dialog-user-new/dialog-user-new.compon
     NavbarComponent,
     UsersComponent,
     UserDataComponent,
-    UserDetailComponent,
     RegisterComponent,
     LoginComponent,
     DialogueComponent,

@@ -1,5 +1,7 @@
 # UserManagementSystem
 
+This project is a simple example of an angular application for users' management, while the backend is a Laravel REST service. You can register and login to your personal account, delete, update or remove an user insite the MySQL database. This is just an example, to verify my knowledge about Angular, and it is not in any way a complete operative system.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
 
 ## Development server

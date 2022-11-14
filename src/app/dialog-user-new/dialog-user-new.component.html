@@ -5,18 +5,24 @@
             <div class="col text-center">
                 <mat-form-field appearance="fill">
                     <mat-label>Nome</mat-label>
-                    <input matInput [(ngModel)]="data.firstName">
-                    <div *ngIf="">
-
+                    <input matInput [(ngModel)]="data.firstName" #firstName="ngModel" name="firstName" type="text"
+                        id="firstName" placeholder="Nome" required autofocus />
+                    <div *ngIf="firstName.dirty && firstName.touched && firstName.invalid && firstName.errors">
+                        <div class="alert-danger" *ngIf="firstName.errors['required']">
+                            Devi inserire necessariamente un nome!
+                        </div>
                     </div>
                 </mat-form-field>
             </div>
             <div class="col">
                 <mat-form-field appearance="fill">
                     <mat-label>Cognome</mat-label>
-                    <input matInput [(ngModel)]="data.lastName">
-                    <div *ngIf="">
-
+                    <input matInput [(ngModel)]="data.lastName" #lastName="ngModel" name="lastName" type="text"
+                        id="lastName" placeholder="Cognome" required autofocus />
+                    <div *ngIf="lastName.dirty && lastName.touched && lastName.invalid && lastName.errors">
+                        <div class="alert-danger" *ngIf="lastName.errors['required']">
+                            Devi inserire necessariamente un cognome!
+                        </div>
                     </div>
                 </mat-form-field>
             </div>
@@ -24,27 +30,39 @@
         <div class="row">
             <mat-form-field appearance="fill">
                 <mat-label>Data di nascita</mat-label>
-                <input type="date" matInput [(ngModel)]="data.dateOfBirth">
-                <div *ngIf="">
-
+                <input matInput [(ngModel)]="data.dateOfBirth" name="dateOfBirth" type="date" id="date-of-birth"
+                    data-date-format="YYYY/MM/DD" #dateOfBirth="ngModel" required autofocus />
+                <div *ngIf="dateOfBirth.dirty && dateOfBirth.touched && dateOfBirth.invalid && dateOfBirth.errors">
+                    <div class="alert-danger" *ngIf="dateOfBirth.errors['required']">
+                        Devi inserire necessariamente una data di nascita!
+                    </div>
                 </div>
             </mat-form-field>
         </div>
         <div class="row">
             <mat-form-field appearance="fill">
                 <mat-label>Codice Fiscale</mat-label>
-                <input matInput [(ngModel)]="data.taxCode">
-                <div *ngIf="">
-
+                <input matInput [(ngModel)]="data.taxCode" name = "taxCode" type = "text" id = "taxCode" 
+                    placeholder="Codice Fiscale" #taxCode = "ngModel" required autofocus/>
+                <div *ngIf="taxCode.dirty && taxCode.touched && taxCode.invalid && taxCode.errors">
+                    <div class="alert-danger" *ngIf="email.errors['required']">
+                        Devi inserire necessarimante un codice fiscale
+                    </div>
                 </div>
             </mat-form-field>
         </div>
         <div class="row">
             <mat-form-field appearance="fill">
                 <mat-label>Email</mat-label>
-                <input type="email" matInput [(ngModel)]="data.email">
-                <div *ngIf="">
-
+                <input matInput [(ngModel)]="data.email" name="email" type="email" id="inputEmail"
+                    placeholder="Email" #email="ngModel" required autofocus />
+                <div *ngIf="email.dirty && email.touched && email.invalid && email.errors">
+                    <div class="alert-danger" *ngIf="email.errors['required']">
+                        Devi inserire necessarimante una email valida
+                    </div>
+                    <div class="alert-danger" *ngIf="email.errors['email']">
+                        Devi inserire necessarimante una email valida
+                    </div>
                 </div>
             </mat-form-field>
         </div>

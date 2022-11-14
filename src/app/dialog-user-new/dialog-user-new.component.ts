@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UserInterface } from '../models/interfaces/UserInterface';
 
 @Component({
   selector: 'app-dialog-user-new',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogUserNewComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<DialogUserNewComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: UserInterface) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    
+  }
+
+  public closeDialog(): void {
+    this.dialogRef.close();
   }
 
 }

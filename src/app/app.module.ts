@@ -20,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DialogUserEditComponent } from './dialog-user-edit/dialog-user-edit.component';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
+import { DialogUserNewComponent } from './dialog-user-new/dialog-user-new.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatInputModule } from '@angular/material/input';
     RegisterComponent,
     LoginComponent,
     DialogueComponent,
-    DialogUserEditComponent
+    DialogUserEditComponent,
+    DialogUserNewComponent
   ],
   imports: [
     FormsModule, 

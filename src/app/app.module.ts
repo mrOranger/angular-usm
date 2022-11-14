@@ -3,7 +3,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserDataComponent } from './user-data/user-data.component';
 import { UsersComponent } from './users/users.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouteGuardsService } from './services/route-guards/route-guards.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -36,6 +36,7 @@ import { DialogUserNewComponent } from './dialog-user-new/dialog-user-new.compon
   imports: [
     FormsModule, 
     BrowserModule,
+    ReactiveFormsModule, 
     AppRoutingModule,
     HttpClientModule,
     MatDialogModule,

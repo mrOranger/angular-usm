@@ -22,7 +22,6 @@ export class DialogUserNewComponent implements OnInit {
       taxCode: [this.data.taxCode, Validators.required, Validators.minLength(6), Validators.maxLength(10)],
       email: [this.data.email, Validators.required, Validators.email]
     });
-    
   }
 
   public ngOnInit(): void {

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import User from '../models/User';
 import { AuthService } from '../services/auth/auth.service';
 import { UserInterface } from '../models/interfaces/UserInterface';
+import DatabaseService from '../services/database/database.service';
 
 @Component({
   selector: 'app-navbar',
@@ -17,13 +18,13 @@ export class NavbarComponent implements OnInit {
   private username: string;
   private authService: AuthService;
   private router: Router;
+  private database: DatabaseService;
 
-  @Output("onNewEvent") private updateEvent: EventEmitter<UserInterface>;
-
-  constructor(authService: AuthService, router: Router, private dialog: MatDialog) {
+  constructor(authService: AuthService, router: Router, private dialog: MatDialog, database: DatabaseService) {
     this.isUsedLoggedIn = false;
     this.authService = authService;
     this.router = router;
+    this.database = database;
   }
 
   public ngOnInit(): void {
@@ -83,13 +84,28 @@ export class NavbarComponent implements OnInit {
         email: ''
       }
     });
-    //this.afterDialogClose(dialogRef);
+    this.afterDialogClose(dialogRef);
   }
 
   private afterDialogClose(dialogRef: MatDialogRef<any>): void {
     dialogRef.afterClosed().subscribe(
       (result) => {
-        this.updateEvent.emit(result);
+        const userCopy: Object = {
+          id: result.id,
+          "first-name": result.firstName,
+          "last-name": result.lastName,
+          "date-of-birth": result.dateOfBirth,
+          "tax-code": result.taxCode,
+          email: result.email
+        }
+        this.database.createUser(userCopy).subscribe((response) => {
+          try {
+            this.router.navigate(["/users"]);
+          } catch (error) {
+            alert("Errore nell'inserimento di un nuovo utente");
+          }
+          console.log(response);
+        });
       }
     );
   } 

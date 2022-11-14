@@ -3,7 +3,6 @@ import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
-import User from 'src/app/models/User';
 import { UserInterface } from 'src/app/models/interfaces/UserInterface';
 
 @Injectable({
@@ -50,7 +49,7 @@ class DatabaseService {
     });
   }
 
-  public createUser(user: UserInterface): Observable<UserInterface>{
+  public createUser(user: Object): Observable<UserInterface>{
     return this.httpClient.post<UserInterface>(DatabaseService.API_URL, user, {
       headers: this.getAuthHeader()
     });

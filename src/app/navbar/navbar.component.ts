@@ -71,7 +71,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  public newUser(event: MouseEvent): void {
+  public newUser(): void {
     const dialogRef: MatDialogRef<any> = this.dialog.open(DialogUserNewComponent, {
       width: '500px',
       data: {
@@ -83,7 +83,7 @@ export class NavbarComponent implements OnInit {
         email: ''
       }
     });
-    this.afterDialogClose(dialogRef);
+    //this.afterDialogClose(dialogRef);
   }
 
   private afterDialogClose(dialogRef: MatDialogRef<any>): void {

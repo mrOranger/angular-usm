@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#" routerLink="users/new">Aggiungi utente</a>
+                <a class="nav-link" href="#" (click)="newUser($event)">Aggiungi utente</a>
             </li>
         </ul>
         <ul class="navbar-nav" *ngIf="isUserLoggedIn()">

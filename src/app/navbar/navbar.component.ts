@@ -1,7 +1,10 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { DialogUserNewComponent } from './../dialog-user-new/dialog-user-new.component';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import User from '../models/User';
 import { AuthService } from '../services/auth/auth.service';
+import { UserInterface } from '../models/interfaces/UserInterface';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +18,9 @@ export class NavbarComponent implements OnInit {
   private authService: AuthService;
   private router: Router;
 
-  constructor(authService: AuthService, router: Router) {
+  @Output("onNewEvent") private updateEvent: EventEmitter<UserInterface>;
+
+  constructor(authService: AuthService, router: Router, private dialog: MatDialog) {
     this.isUsedLoggedIn = false;
     this.authService = authService;
     this.router = router;
@@ -65,6 +70,29 @@ export class NavbarComponent implements OnInit {
       this.isUsedLoggedIn = true;
     });
   }
+
+  public newUser(event: MouseEvent): void {
+    const dialogRef: MatDialogRef<any> = this.dialog.open(DialogUserNewComponent, {
+      width: '500px',
+      data: {
+        id: '',
+        firstName: '',
+        lastName: '',
+        dateOfBirth: '',
+        taxCode: '',
+        email: ''
+      }
+    });
+    this.afterDialogClose(dialogRef);
+  }
+
+  private afterDialogClose(dialogRef: MatDialogRef<any>): void {
+    dialogRef.afterClosed().subscribe(
+      (result) => {
+        this.updateEvent.emit(result);
+      }
+    );
+  } 
 
   public logout(event : MouseEvent) {
     event.preventDefault();
